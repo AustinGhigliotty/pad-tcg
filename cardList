@@ -1,0 +1,70 @@
+{
+  "monsters": {
+    "ArtemisS1": {
+      "name": "Artemis",
+      "evosFrom": "Golden Egg",
+      "cost": 0,
+      "type": "God",
+      "subType": "",
+      "attribute": "Wood",
+      "subAttribute": "",
+      "damage": [0,100,200,300,400,500],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 600,
+      "evoStage": 1,
+      "evoCost": "",
+      "skill": "",
+      "drops": ""
+    },
+    "ArtemisS2": {
+      "name": "Hunting Deity Artemis",
+      "evosFrom": "Artemis",
+      "cost": 1,
+      "type": "God",
+      "subType": "",
+      "attribute": "Wood",
+      "subAttribute": "",
+      "damage": [100,100,200,300,500,700],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 600,
+      "evoStage": 2,
+      "evoCost": "",
+      "skill": "",
+      "drops": ""
+    },
+    "ArtemisS3": {
+      "name": "Hunt God of the Holy Bow, Artemis",
+      "evosFrom": "Hunting Deity Artemis",
+      "cost": 0,
+      "type": "God",
+      "subType": "Balanced",
+      "attribute": "Wood",
+      "subAttribute": "Light",
+      "damage": [100,200,300,600,700,800],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 700,
+      "evoStage": 3,
+      "evoCost": "Keeper of Rainbow",
+      "skill": "",
+      "drops": ""
+    }
+  },
+  "skills": {
+    "MetalDragon": {
+      "name": "Metal Dragon",
+      "cost": 0,
+      "attribute": "Dark",
+      "subAttribute": "",
+      "skillDesc": "",
+      "drops": ""
+    },
+    "KeeperOfGold": {
+      "name": "Keeper of Gold",
+      "cost": 0,
+      "attribute": "Light",
+      "subAttribute": "Fire",
+      "skillDesc": "",
+      "drops": ""
+    }
+  }
+}
