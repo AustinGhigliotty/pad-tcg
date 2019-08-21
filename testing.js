@@ -13,25 +13,19 @@ for (let i = 0; i < 5; i++) {
 }
 $('.deck2').text("Deck (After shuffle): " + curDeck);
 
-var cardList;
-// $.getJSON( "./cardList", function( json ) {
-//     console.log( "JSON Data received, name is " + json.monsters.Artemis.name);
-//     console.log(json);
-//     cardList = json;
-//     console.log(cardList);
-//     console.log( "JSON Data received, name is " + cardList.monsters.Artemis.cardNumber);
-// });
 
-
-
-setTimeout(function(){ console.log(cardList); }, 3000);
+console.log("cardList = ");
 console.log(cardList);
-// console.log( "JSON Data received, name is " + cardList.monsters.Artemis.name);
-// console.log( "JSON Data received, name is " + json.monsters.curDeck[0].cardNumber);
 
+console.log(hand[0]);
+console.log(hand);
+console.log(cardList);
+console.log(cardList.hand);
+console.log(cardList.Tyrannos.defense);
+// console.log(cardList.hand[0].toString().defense);
 
 for (let i = 0; i <= hand.length; i++) {
-    $('.card' + (i + 1)).text("Card " + i + ": " + hand[i])
+    $('.card' + (i + 1)).text("Card " + i + ": " + hand[i]).append('<img src="./cards/' + hand[i] + '.jpg" alt="" class="hand-card"><p>Defense: ' + "h" + '</p>')
 }
 
 function shuffleDeck(deck) {

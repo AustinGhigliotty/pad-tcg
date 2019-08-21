@@ -8,12 +8,14 @@
 <body>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
+	var cardList;
     $.getJSON("./cardList", callbackFuncWithData);
 
     function callbackFuncWithData(data) {
         cardList = data;
         console.log(cardList);
     }
+    alert("Game is starting!");
 </script>
 <h3>Hand:</h3>
 <p class="card1">Card 1: </p>

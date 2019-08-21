@@ -1,5 +1,4 @@
 {
-  "monsters": {
     "Artemis": {
       "name": "Artemis",
       "evosFrom": "Golden Egg",
@@ -14,9 +13,11 @@
       "evoStage": 1,
       "evoCost": "",
       "skillType": "",
-      "skill": "",
+      "skillDesc": "",
+      "skillShort": "",
       "drops": ["Wood", "Light", "Heal"],
-      "cardNumber": "B05-019"
+      "cardNumber": "B05-019",
+      "cardType": "Monster"
     },
     "EvoArtemis": {
       "name": "Hunting Deity Artemis",
@@ -32,9 +33,11 @@
       "evoStage": 2,
       "evoCost": "",
       "skillType": "",
-      "skill": "",
+      "skillDesc": "",
+      "skillShort": "",
       "drops": ["Wood", "Light", "Heal"],
-      "cardNumber": "B05-020"
+      "cardNumber": "B05-020",
+      "cardType": "Monster"
     },
     "UEvoArtemis": {
       "name": "Hunt God of the Holy Bow, Artemis",
@@ -50,9 +53,11 @@
       "evoStage": 3,
       "evoCost": "Keeper of Rainbow",
       "skillType": "",
-      "skill": "",
+      "skillDesc": "",
+      "skillShort": "",
       "drops": ["Wood", "Light", "Heal"],
-      "cardNumber": "B05-021"
+      "cardNumber": "B05-021",
+      "cardType": "Monster"
     },
     "Tyrra": {
       "name": "Tyrra",
@@ -68,9 +73,11 @@
       "evoStage": 0,
       "evoCost": "",
       "skillType": "",
-      "skill": "",
+      "skillDesc": "",
+      "skillShort": "",
       "drops": ["Fire", "Dark", "Heal"],
-      "cardNumber": "B01-021"
+      "cardNumber": "B01-021",
+      "cardType": "Monster"
     },
     "Tyran": {
       "name": "Tyran",
@@ -86,9 +93,11 @@
       "evoStage": 1,
       "evoCost": "",
       "skillType": "",
-      "skill": "When you place this card to evolve one of your monsters, take the top card of your deck and put it in your Drop Area.",
+      "skillDesc": "When you place this card to evolve one of your monsters, take the top card of your deck and put it in your Drop Area.",
+      "skillShort": "",
       "drops": ["Fire", "Wood", "Light"],
-      "cardNumber": "B01-022"
+      "cardNumber": "B01-022",
+      "cardType": "Monster"
     },
     "Tyrannos": {
       "name": "Tyrannos",
@@ -104,9 +113,11 @@
       "evoStage": 2,
       "evoCost": "",
       "skillType": "",
-      "skill": "",
+      "skillDesc": "",
+      "skillShort": "",
       "drops": ["Fire", "Water", "Dark"],
-      "cardNumber": "B01-023"
+      "cardNumber": "B01-023",
+      "cardType": "Monster"
     },
     "UltTyrannos": {
       "name": "Firedragon Tyrannos",
@@ -122,9 +133,11 @@
       "evoStage": 2,
       "evoCost": "",
       "skillType": "",
-      "skill": "During your Puzzle Phase, if you match 6 combos, roll one of your opponent's Wood monsters.",
+      "skillDesc": "During your Puzzle Phase, if you match 6 combos, roll one of your opponent's Wood monsters.",
+      "skillShort": "",
       "drops": ["Fire", "Heal"],
-      "cardNumber": "B01-024"
+      "cardNumber": "B01-024",
+      "cardType": "Monster"
     },
     "Plessie": {
       "name": "Plessie",
@@ -140,9 +153,11 @@
       "evoStage": 0,
       "evoCost": "",
       "skillType": "",
-      "skill": "",
+      "skillDesc": "",
+      "skillShort": "",
       "drops": ["Water", "Light", "Heal"],
-      "cardNumber": "B01-025"
+      "cardNumber": "B01-025",
+      "cardType": "Monster"
     },
     "Plesiel": {
       "name": "Plesiel",
@@ -158,9 +173,11 @@
       "evoStage": 1,
       "evoCost": "",
       "skillType": "",
-      "skill": "When you place this card to evolve one of your monsters, take the top card of your deck and put it in your Drop Area.",
+      "skillDesc": "When you place this card to evolve one of your monsters, take the top card of your deck and put it in your Drop Area.",
+      "skillShort": "",
       "drops": ["Fire", "Wood", "Light"],
-      "cardNumber": "B01-022"
+      "cardNumber": "B01-026",
+      "cardType": "Monster"
     },
     "Plesios": {
       "name": "Plesios",
@@ -176,9 +193,11 @@
       "evoStage": 2,
       "evoCost": "",
       "skillType": "",
-      "skill": "",
+      "skillDesc": "",
+      "skillShort": "",
       "drops": ["Fire", "Water", "Dark"],
-      "cardNumber": "B01-023"
+      "cardNumber": "B01-027",
+      "cardType": "Monster"
     },
     "UltPlesios": {
       "name": "Icedragon Plesios",
@@ -194,9 +213,11 @@
       "evoStage": 2,
       "evoCost": "",
       "skillType": "",
-      "skill": "During your Puzzle Phase, if you match 6 combos, roll one of your opponent's Fire monsters.",
+      "skillDesc": "During your Puzzle Phase, if you match 6 combos, roll one of your opponent's Fire monsters.",
+      "skillShort": "",
       "drops": ["Water", "Heal"],
-      "cardNumber": "B01-024"
+      "cardNumber": "B01-028",
+      "cardType": "Monster"
     },
     "Brachy": {
       "name": "Brachy",
@@ -212,9 +233,11 @@
       "evoStage": 0,
       "evoCost": "",
       "skillType": "",
-      "skill": "",
+      "skillDesc": "",
+      "skillShort": "",
       "drops": ["Fire", "Dark", "Heal"],
-      "cardNumber": "B01-021"
+      "cardNumber": "B01-029",
+      "cardType": "Monster"
     },
     "Brachio": {
       "name": "Brachio",
@@ -230,9 +253,11 @@
       "evoStage": 1,
       "evoCost": "",
       "skillType": "",
-      "skill": "When you place this card to evolve one of your monsters, take the top card of your deck and put it in your Drop Area.",
+      "skillDesc": "When you place this card to evolve one of your monsters, take the top card of your deck and put it in your Drop Area.",
+      "skillShort": "",
       "drops": ["Fire", "Wood", "Light"],
-      "cardNumber": "B01-022"
+      "cardNumber": "B01-030",
+      "cardType": "Monster"
     },
     "Brachys": {
       "name": "Brachys",
@@ -248,9 +273,11 @@
       "evoStage": 2,
       "evoCost": "",
       "skillType": "",
-      "skill": "",
+      "skillDesc": "",
+      "skillShort": "",
       "drops": ["Fire", "Water", "Dark"],
-      "cardNumber": "B01-023"
+      "cardNumber": "B01-031",
+      "cardType": "Monster"
     },
     "UltBrachys": {
       "name": "Flowerdragon Brachys",
@@ -266,22 +293,22 @@
       "evoStage": 2,
       "evoCost": "",
       "skillType": "",
-      "skill": "During your Puzzle Phase, if you match 6 combos, roll one of your opponent's Water monsters.",
+      "skillDesc": "During your Puzzle Phase, if you match 6 combos, roll one of your opponent's Water monsters.",
+      "skillShort": "",
       "drops": ["Wood", "Heal"],
-      "cardNumber": "B01-024"
-    }
-
-
-  },
-  "skills": {
+      "cardNumber": "B01-032",
+      "cardType": "Monster"
+    },
     "MetalDragon": {
       "name": "Metal Dragon",
       "cost": 0,
       "attribute": "Dark",
       "subAttribute": "",
       "skillDesc": "",
+      "skillShort": "",
       "drops": "",
-      "cardNumber": "B02-106"
+      "cardNumber": "B02-106",
+      "cardType": "Skill"
     },
     "KeeperOfGold": {
       "name": "Keeper of Gold",
@@ -289,8 +316,9 @@
       "attribute": "Light",
       "subAttribute": "Fire",
       "skillDesc": "",
+      "skillShort": "",
       "drops": "",
-      "cardNumber": "B05-078"
+      "cardNumber": "B05-078",
+      "cardType": "Skill"
     }
-  }
 }
