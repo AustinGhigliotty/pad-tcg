@@ -3,8 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>PAD Card Game</title>
+	<link rel="stylesheet" href="board-styling.css">
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    $.getJSON("./cardList", callbackFuncWithData);
 
+    function callbackFuncWithData(data) {
+        cardList = data;
+        console.log(cardList);
+    }
+</script>
+<h3>Hand:</h3>
+<p class="card1">Card 1: </p>
+<p class="card2">Card 2: </p>
+<p class="card3">Card 3: </p>
+<p class="card4">Card 4: </p>
+<p class="card5">Card 5: </p>
+<br>
+<p class="deck">Deck: </p>
+<p class="deck2">Deck (After shuffle): </p>
 </body>
+<script src="testing.js"></script>
 </html>

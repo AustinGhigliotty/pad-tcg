@@ -1,6 +1,6 @@
 {
   "monsters": {
-    "ArtemisS1": {
+    "Artemis": {
       "name": "Artemis",
       "evosFrom": "Golden Egg",
       "cost": 0,
@@ -13,10 +13,12 @@
       "defense": 600,
       "evoStage": 1,
       "evoCost": "",
+      "skillType": "",
       "skill": "",
-      "drops": ""
+      "drops": ["Wood", "Light", "Heal"],
+      "cardNumber": "B05-019"
     },
-    "ArtemisS2": {
+    "EvoArtemis": {
       "name": "Hunting Deity Artemis",
       "evosFrom": "Artemis",
       "cost": 1,
@@ -29,10 +31,12 @@
       "defense": 600,
       "evoStage": 2,
       "evoCost": "",
+      "skillType": "",
       "skill": "",
-      "drops": ""
+      "drops": ["Wood", "Light", "Heal"],
+      "cardNumber": "B05-020"
     },
-    "ArtemisS3": {
+    "UEvoArtemis": {
       "name": "Hunt God of the Holy Bow, Artemis",
       "evosFrom": "Hunting Deity Artemis",
       "cost": 0,
@@ -45,9 +49,229 @@
       "defense": 700,
       "evoStage": 3,
       "evoCost": "Keeper of Rainbow",
+      "skillType": "",
       "skill": "",
-      "drops": ""
+      "drops": ["Wood", "Light", "Heal"],
+      "cardNumber": "B05-021"
+    },
+    "Tyrra": {
+      "name": "Tyrra",
+      "evosFrom": "",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Fire",
+      "subAttribute": "",
+      "damage": [0,100,200,300,400,500],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 200,
+      "evoStage": 0,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "",
+      "drops": ["Fire", "Dark", "Heal"],
+      "cardNumber": "B01-021"
+    },
+    "Tyran": {
+      "name": "Tyran",
+      "evosFrom": "Tyrra",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Fire",
+      "subAttribute": "",
+      "damage": [0,100,300,300,500,600],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 300,
+      "evoStage": 1,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "When you place this card to evolve one of your monsters, take the top card of your deck and put it in your Drop Area.",
+      "drops": ["Fire", "Wood", "Light"],
+      "cardNumber": "B01-022"
+    },
+    "Tyrannos": {
+      "name": "Tyrannos",
+      "evosFrom": "Tyran",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Fire",
+      "subAttribute": "",
+      "damage": [100,200,300,400,500,700],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 500,
+      "evoStage": 2,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "",
+      "drops": ["Fire", "Water", "Dark"],
+      "cardNumber": "B01-023"
+    },
+    "UltTyrannos": {
+      "name": "Firedragon Tyrannos",
+      "evosFrom": "Tyrannos",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Fire",
+      "subAttribute": "",
+      "damage": [200,300,400,600,700,900],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 600,
+      "evoStage": 2,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "During your Puzzle Phase, if you match 6 combos, roll one of your opponent's Wood monsters.",
+      "drops": ["Fire", "Heal"],
+      "cardNumber": "B01-024"
+    },
+    "Plessie": {
+      "name": "Plessie",
+      "evosFrom": "",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Water",
+      "subAttribute": "",
+      "damage": [0,100,100,200,200,300],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 500,
+      "evoStage": 0,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "",
+      "drops": ["Water", "Light", "Heal"],
+      "cardNumber": "B01-025"
+    },
+    "Plesiel": {
+      "name": "Plesiel",
+      "evosFrom": "Plessie",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Water",
+      "subAttribute": "",
+      "damage": [0,100,300,300,500,600],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 300,
+      "evoStage": 1,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "When you place this card to evolve one of your monsters, take the top card of your deck and put it in your Drop Area.",
+      "drops": ["Fire", "Wood", "Light"],
+      "cardNumber": "B01-022"
+    },
+    "Plesios": {
+      "name": "Plesios",
+      "evosFrom": "Plesiel",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Water",
+      "subAttribute": "",
+      "damage": [100,200,300,400,500,700],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 500,
+      "evoStage": 2,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "",
+      "drops": ["Fire", "Water", "Dark"],
+      "cardNumber": "B01-023"
+    },
+    "UltPlesios": {
+      "name": "Icedragon Plesios",
+      "evosFrom": "Plesios",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Water",
+      "subAttribute": "",
+      "damage": [200,300,400,600,700,900],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 600,
+      "evoStage": 2,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "During your Puzzle Phase, if you match 6 combos, roll one of your opponent's Fire monsters.",
+      "drops": ["Water", "Heal"],
+      "cardNumber": "B01-024"
+    },
+    "Brachy": {
+      "name": "Brachy",
+      "evosFrom": "",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Wood",
+      "subAttribute": "",
+      "damage": [0,100,200,300,400,500],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 200,
+      "evoStage": 0,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "",
+      "drops": ["Fire", "Dark", "Heal"],
+      "cardNumber": "B01-021"
+    },
+    "Brachio": {
+      "name": "Brachio",
+      "evosFrom": "Brachy",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Wood",
+      "subAttribute": "",
+      "damage": [0,100,300,300,500,600],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 300,
+      "evoStage": 1,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "When you place this card to evolve one of your monsters, take the top card of your deck and put it in your Drop Area.",
+      "drops": ["Fire", "Wood", "Light"],
+      "cardNumber": "B01-022"
+    },
+    "Brachys": {
+      "name": "Brachys",
+      "evosFrom": "Brachio",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Wood",
+      "subAttribute": "",
+      "damage": [100,200,300,400,500,700],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 500,
+      "evoStage": 2,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "",
+      "drops": ["Fire", "Water", "Dark"],
+      "cardNumber": "B01-023"
+    },
+    "UltBrachys": {
+      "name": "Flowerdragon Brachys",
+      "evosFrom": "Brachys",
+      "cost": 0,
+      "type": "Dragon",
+      "subType": "",
+      "attribute": "Wood",
+      "subAttribute": "",
+      "damage": [200,300,400,600,700,900],
+      "damagePlus": [0,0,0,0,0,0],
+      "defense": 600,
+      "evoStage": 2,
+      "evoCost": "",
+      "skillType": "",
+      "skill": "During your Puzzle Phase, if you match 6 combos, roll one of your opponent's Water monsters.",
+      "drops": ["Wood", "Heal"],
+      "cardNumber": "B01-024"
     }
+
+
   },
   "skills": {
     "MetalDragon": {
@@ -56,7 +280,8 @@
       "attribute": "Dark",
       "subAttribute": "",
       "skillDesc": "",
-      "drops": ""
+      "drops": "",
+      "cardNumber": "B02-106"
     },
     "KeeperOfGold": {
       "name": "Keeper of Gold",
@@ -64,7 +289,8 @@
       "attribute": "Light",
       "subAttribute": "Fire",
       "skillDesc": "",
-      "drops": ""
+      "drops": "",
+      "cardNumber": "B05-078"
     }
   }
 }
