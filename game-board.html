@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>PAD Card Game</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="board-styling.css">
 </head>
 <body>
@@ -13,19 +14,59 @@
 
     function callbackFuncWithData(data) {
         cardList = data;
-        console.log(cardList);
     }
     alert("Game is starting!");
 </script>
-<h3>Hand:</h3>
-<p class="card1">Card 1: </p>
-<p class="card2">Card 2: </p>
-<p class="card3">Card 3: </p>
-<p class="card4">Card 4: </p>
-<p class="card5">Card 5: </p>
-<br>
-<p class="deck">Deck: </p>
-<p class="deck2">Deck (After shuffle): </p>
+<div class="container card-viewer">
+	<img src="" alt="" class="viewing-card">
+</div>
+<div class="container hand-view-container">
+	<div class="row hand-viewer">
+<!--		<img src="" alt="" class="col hand-card1">-->
+<!--		<img src="" alt="" class="col hand-card2">-->
+		<div class="col"></div>
+<!--		<div class="col"><img src="" alt="" class="hand-card1 face-up"></div>-->
+<!--		<div class="col"><img src="" alt="" class="hand-card2 face-up"></div>-->
+		<div class="col"></div>
+	</div>
+</div>
+<div class="container top-half"></div>
+<div class="container bottom-half">
+	<div class="attack-area"></div>
+	<div id="monster-area" class="row">
+		<div id="monster1" class="col"></div>
+		<div id="monster2" class="col"></div>
+		<div id="monster3" class="col"></div>
+		<div id="monster4" class="col"></div>
+		<div id="monster5" class="col"></div>
+		<div class="empty-space"></div>
+		<div id="deck-area" class="col face-down"><img src="cards/back.jpg" alt=""></div>
+<!--		<div class="deck-count"></div>-->
+	</div>
+	<div class="vert-space"></div>
+	<div id="drop-areas" class="row">
+		<div class="col empty-drop"></div>
+		<div id="drop-area1" class="col"></div>
+		<div id="drop-area2" class="col"></div>
+		<div id="drop-area3" class="col"></div>
+		<div class="col empty-drop"></div>
+		<div class="empty-space"></div>
+		<div id="discard-pile" class="col"></div>
+	</div>
+</div>
+<div class="hand-tab face-down"><img src="cards/back.jpg" alt="" onclick="showHand()"></div>
+<!--<div class="hand-cancel" onclick="showHand()">Cancel</div>-->
+<button class="hand-cancel" onclick="hideHand()">Cancel</button>
+
+<!--<h3>Hand:</h3>-->
+<!--<p class="card1">Card 1: </p>-->
+<!--<p class="card2">Card 2: </p>-->
+<!--<p class="card3">Card 3: </p>-->
+<!--<p class="card4">Card 4: </p>-->
+<!--<p class="card5">Card 5: </p>-->
+<!--<br>-->
+<!--<p class="deck">Deck: </p>-->
+<!--<p class="deck2">Deck (After shuffle): </p>-->
 </body>
 <script src="testing.js"></script>
 </html>

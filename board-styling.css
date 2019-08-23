@@ -1,3 +1,111 @@
+body {
+    background-color: darkblue;
+}
 .hand-card {
-    width: 120px;
+    width: 100px;
+}
+
+#monster-area.row {
+    top: 300px;
+}
+
+#monster-area>*>img {
+    width: 110px;
+    background-size: cover;
+}
+
+#monster1 {}
+#monster2 {}
+#monster3 {}
+#monster4 {}
+#monster5 {}
+
+#drop-areas>*>img {
+    width: 110px;
+    /*height: 350px;*/
+    background-size: cover;
+    transform: rotate(180deg);
+}
+
+.deck-count {
+    width: 110px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    float: right;
+    margin-left: -50px;
+    z-index: 20;
+}
+#deck-area>img {
+    width: 110px;
+    background-size: cover;
+}
+.empty-space {
+    width: 50px;
+}
+
+.empty-drop {
+    width: 110px;
+}
+.attack-area {
+    height: 50px;
+}
+.top-half {
+    height: 410px;
+}
+.vert-space {
+    height: 10px;
+}
+.bottom-half {
+    height: 410px;
+}
+.hand-tab {
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+}
+.hand-tab>img {
+    width: 110px;
+    background-size: cover;
+}
+.hand-viewer {
+    position: absolute;
+    width: 101%;
+    left: 0;
+    height: 200px;
+    top: calc(50% - 100px);
+    background-color: rgba(103,50,16,0.8);
+    z-index: 29;
+    visibility: hidden;
+}
+.hand-viewer>*>img {
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+    width: 130px;
+    box-sizing: content-box;
+    z-index: 30;
+}
+.hand-viewer>div {
+    text-align: center;
+}
+/*.hand-tab>img:hover {*/
+/*    border: yellow 5px solid;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+.hand-cancel {
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+    visibility: hidden;
+}
+
+.viewing-card {
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+    width: 500px;
+    position: absolute;
+    z-index: 50;
 }
