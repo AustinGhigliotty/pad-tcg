@@ -108,4 +108,20 @@ body {
     width: 500px;
     position: absolute;
     z-index: 50;
+    visibility: hidden;
+}
+.card-viewer {
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+}
+.skill-trans {
+    position: absolute;
+    bottom:215px; right:240px;
+    /*margin: auto;*/
+    width: 402px;
+    height: 90px;
+    background-color: rgba(200, 0, 0, 0.3);
+    z-index: 100;
+    visibility: hidden;
 }

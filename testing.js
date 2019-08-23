@@ -16,7 +16,6 @@ var viewingCard;
 // $('.deck2').text("Deck (After shuffle): " + curDeck);
 
 
-
 gameStart();
 
 
@@ -105,15 +104,11 @@ function showHand() {
     $('.hand-viewer').css('visibility', 'visible');
     $('.hand-viewer').empty();
     $('.hand-viewer').append('<div class="col"></div>');
-
     for (let i = 0; i < hand.length; i++) {
         $('.hand-viewer').append('<div class="col"><img src="cards/' + hand[i] + '.jpg" alt="" class="hand-card' + (i+1) + ' face-up"></div>');
     }
-
     $('.hand-viewer').append('<div class="col"></div>');
 
-    // $('.hand-card1').attr("src","cards/" + hand[0] + ".jpg");
-    // $('.hand-card2').attr("src","cards/" + hand[1] + ".jpg");
     $('.hand-cancel').css('visibility', 'visible');
 }
 function hideHand() {
@@ -127,10 +122,15 @@ function viewCard() {
 function hideViewedCard() {
     $('.viewing-card').css('visibility', 'hidden');
 }
-$('.face-up').click(function() {
+
+$('*').on('click', '.face-up', function() {
     viewingCard = $(this).attr("src");
+    $('.skill-trans').css('visibility', 'visible');
     viewCard();
 });
 $('.viewing-card').click(function() {
     hideViewedCard();
+});
+$('.skill-trans').mouseover(function() {
+    console.log(cardList[viewingCard].skillDesc);
 });
