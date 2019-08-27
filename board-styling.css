@@ -125,3 +125,10 @@ body {
     z-index: 100;
     visibility: hidden;
 }
+
+.swap-cancel {
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+    visibility: hidden;
+}
