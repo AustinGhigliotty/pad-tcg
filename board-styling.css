@@ -132,3 +132,36 @@ body {
     right: 50px;
     visibility: hidden;
 }
+
+/*#hp-area>*>img {*/
+/*    width: 110px;*/
+/*    rotation: 90deg;*/
+/*}*/
+/*#hp-area>div {*/
+/*    position: absolute;*/
+/*}*/
+/*#hp1 {*/
+/*    position: absolute;*/
+/*    !*top: 0;*!*/
+/*}*/
+/*#hp2 {*/
+/*    position: absolute;*/
+/*    !*top: 50px;*!*/
+/*}*/
+/*#hp3 {*/
+/*    position: absolute;*/
+/*    !*top: 100px;*!*/
+/*}*/
+/*#hp4 {*/
+/*    position: absolute;*/
+/*    !*top: 30px;*!*/
+/*}*/
+/*#hp5 {*/
+/*    position: absolute;*/
+/*    !*top: 40px;*!*/
+/*}*/
+/*#hp-area {*/
+/*    background-color: skyblue;*/
+/*    width: 120px;*/
+/*    height: 160px;*/
+/*}*/
