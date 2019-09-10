@@ -40,6 +40,7 @@ body {
 #deck-area>img {
     width: 110px;
     background-size: cover;
+    cursor: url("cards/artemis.jpg"), auto;
 }
 .empty-space {
     width: 50px;
@@ -132,6 +133,20 @@ body {
     right: 50px;
     visibility: hidden;
 }
+.main-cancel {
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+    visibility: hidden;
+}
+.end-main {
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+    visibility: hidden;
+}
+
+
 
 /*#hp-area>*>img {*/
 /*    width: 110px;*/

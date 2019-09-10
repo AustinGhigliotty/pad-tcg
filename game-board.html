@@ -41,7 +41,7 @@
 		<div id="monster4" class="col"></div>
 		<div id="monster5" class="col"></div>
 		<div class="empty-space"></div>
-		<div id="deck-area" class="col face-down"><img src="cards/back.jpg" alt=""></div>
+		<div id="deck-area" class="col face-down"><img src="cards/back.jpg" alt="" class="deck"></div>
 <!--		<div class="empty-space"></div>-->
 <!--		<div id="hp-area">-->
 <!--			<div id="hp1"><img src="cards/back.jpg" alt=""></div>-->
@@ -67,6 +67,8 @@
 <!--<div class="hand-cancel" onclick="showHand()">Cancel</div>-->
 <button class="hand-cancel" onclick="hideHand()">Cancel</button>
 <button class="swap-cancel" onclick="endSwap()">Done</button>
+<button class="main-cancel" onclick="mainCancel()">Cancel</button>
+<button class="end-main" onclick="endMain()">Go to puzzle phase</button>
 
 <!--<h3>Hand:</h3>-->
 <!--<p class="card1">Card 1: </p>-->
@@ -78,5 +80,5 @@
 <!--<p class="deck">Deck: </p>-->
 <!--<p class="deck2">Deck (After shuffle): </p>-->
 </body>
-<script src="testing.js"></script>
+<script src="gameplay.js"></script>
 </html>
