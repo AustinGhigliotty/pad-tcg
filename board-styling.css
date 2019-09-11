@@ -146,6 +146,10 @@ body {
     visibility: hidden;
 }
 
+.drop-extras1 {position: absolute;}
+.drop-extras2 {position: absolute;}
+.drop-extras3 {position: absolute;}
+
 
 
 /*#hp-area>*>img {*/

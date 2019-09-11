@@ -269,18 +269,15 @@ $(document).on('click', '.drops', function() {
         puzzleCardFromDeck = true;
         $('.deck').css('src', 'cards/back.jpg');
         let selectedDropArea = $(this).attr('class').split(' ')[1];
-        console.log(selectedDropArea);
         if (parseInt(selectedDropArea.charAt(selectedDropArea.length - 1)) === 1) {
             dropArea1.push(curDeck[0]);
-            console.log(1)
         } else if (parseInt(selectedDropArea.charAt(selectedDropArea.length - 1)) === 2) {
             dropArea2.push(curDeck[0]);
-            console.log(2)
         } else if (parseInt(selectedDropArea.charAt(selectedDropArea.length - 1)) === 3) {
             dropArea3.push(curDeck[0]);
-            console.log(3)
         }
         curDeck.shift();
+        dropRefresh();
     }
 });
 
@@ -373,3 +370,30 @@ $('.skill-trans').mouseover(function() {
     console.log(clickedCard);
     console.log(cardList[clickedCard].skillDesc);
 });
+
+function dropRefresh() {
+    $('#drop-area1').empty();
+    $('#drop-area2').empty();
+    $('#drop-area3').empty();
+    for (let i = 0; i < dropArea1.length; i++) {
+        if (i === 0) {
+            $('#drop-area1').append('<img src="./cards/' + dropArea1[i] + '.jpg" alt="" class="face-up drop-card1 drops">');
+        } else {
+            $('#drop-area1').append('<img src="./cards/' + dropArea1[i] + '.jpg" alt="" class="face-up drop-extras1 drops" style="top: ' + (i*15) + 'px; right: 26px; position: absolute">');
+        }
+    }
+    for (let i = 0; i < dropArea2.length; i++) {
+        if (i === 0) {
+            $('#drop-area2').append('<img src="./cards/' + dropArea2[i] + '.jpg" alt="" class="face-up drop-card2 drops">');
+        } else {
+            $('#drop-area2').append('<img src="./cards/' + dropArea2[i] + '.jpg" alt="" class="face-up drop-extras2 drops" style="top: ' + (i*15) + 'px; right: 26px; position: absolute">');
+        }
+    }
+    for (let i = 0; i < dropArea3.length; i++) {
+        if (i === 0) {
+            $('#drop-area3').append('<img src="./cards/' + dropArea3[i] + '.jpg" alt="" class="face-up drop-card3 drops">');
+        } else {
+            $('#drop-area3').append('<img src="./cards/' + dropArea3[i] + '.jpg" alt="" class="face-up drop-extras3 drops" style="top: ' + (i*15) + 'px; right: 26px; position: absolute">');
+        }
+    }
+}
