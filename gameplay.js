@@ -17,6 +17,25 @@ var clickedCard;
 var currentPhase = "";
 var puzzleCardFromDeck;
 
+var enemyBaseDeck = ["artemis", "evoArtemis", "UEvoArtemis", "tyrra", "tyran", "tyrannos", "ultTyrannos", "plessie", "plesiel", "plesios",
+    "ultPlesios", "brachy", "brachio", "brachys", "ultBrachys", "dryad", "mandrake", "alraune", "heavyMetalDragon", "zaerog", "zeus",
+    "evoZeus", "rubylit", "sapphilit", "emelit", "topalit", "amelit", "cure", "world"];
+var enemyBaseMonsters = ["tyrra", "plessie", "brachy", "dryad", "goldenEgg"];
+var enemyCurDeck = baseDeck;
+var enemyHP = [];
+var enemyHand = [];
+var enemyDropArea1 = [];
+var enemyDropArea2 = [];
+var enemyDropArea3 = [];
+var enemyMonstersRolled = [0,0,0,0,0];
+var enemyMonstersAttacking = [0,0,0,0,0];
+var enemyTurns = 0;
+var enemyViewingCard;
+var enemySwapping;
+var enemyClickedCard;
+var enemyCurrentPhase = "";
+var enemyPuzzleCardFromDeck;
+
 gameStart();
 dropAreaSwap();
 
@@ -354,7 +373,14 @@ function viewCard() {
     if (currentPhase === "Main") {
         $('.end-main').css('visibility', 'hidden');
     }
+    $('.monster-info').empty();
     $('.monster-info').append('<p>' + cardList[clickedCard].name + '</p>');
+        if (cardList[clickedCard].evosFrom !== undefined) {
+            $('.monster-info').append('<p>Evolves from ' + cardList[clickedCard].evosFrom + '</p>');
+        }
+        if (cardList[clickedCard].skillDesc !== undefined) {
+            $('.monster-info').append('<p>Skill: (' + cardList[clickedCard].skillType + ') ' + cardList[clickedCard].skillDesc + '</p>');
+        }
 }
 function hideViewedCard() {
     $('.viewing-card').css('visibility', 'hidden');
