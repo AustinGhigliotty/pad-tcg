@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PAD Card Game</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="deck-builder-styling.css">
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    var cardList;
+    $.getJSON("./cardList", callbackFuncWithData);
+
+    function callbackFuncWithData(data) {
+        cardList = data;
+    }
+    alert("loading cards");
+</script>
+<div class="row">
+	<div class="col-5 card">
+		<img class="card-img" src="" alt="">
+	</div>
+	<div class="col">
+		<p>name: <span class="name"></span> </p>
+		<p>evosFrom: <span class="evosFrom"></span> </p>
+		<p>cost: <span class="cost"></span> </p>
+		<p>type: <span class="type"></span> </p>
+		<p>subType: <span class="subType"></span> </p>
+		<p>attribute: <span class="attribute"></span> </p>
+		<p>subAttribute: <span class="subAttribute"></span> </p>
+		<p>damage: <span class="damage"></span> </p>
+		<p>damagePlus: <span class="damagePlus"></span> </p>
+		<p>defense: <span class="defense"></span> </p>
+		<p>evoStage: <span class="evoStage"></span> </p>
+		<p>evoCost: <span class="evoCost"></span> </p>
+		<p>skillType: <span class="skillType"></span> </p>
+		<p>skillDesc: <span class="skillDesc"></span> </p>
+		<p>skillShort: <span class="skillShort"></span> </p>
+		<p>drops: <span class="drops"></span> </p>
+		<p>cardNumber: <span class="cardNumber"></span> </p>
+		<p>cardType: <span class="cardType"></span> </p>
+		<br>
+	</div>
+</div>
+<div class="row" style="position: absolute; bottom: 10px; right: 50px;">
+	<button class="col back-button" onclick="prevCard()">Back</button>
+	<button class="col next-button" onclick="nextCard()">Next</button>
+</div>
+
+</body>
+<script>
+	var cardNo = 0;
+
+	function nextCard() {
+	    cardNo++;
+	    cardUpdate()
+	}
+    function prevCard() {
+        if (cardNo > 0) {cardNo--;}
+        cardUpdate()
+    }
+	function cardUpdate() {
+        $('.card-img').attr('src', 'cards/' + Object.keys(cardList)[cardNo] + '.jpg');
+        $('.name').text(cardList[Object.keys(cardList)[cardNo]].name);
+        $('.evosFrom').text(cardList[Object.keys(cardList)[cardNo]].evosFrom);
+        $('.cost').text(cardList[Object.keys(cardList)[cardNo]].cost);
+        $('.type').text(cardList[Object.keys(cardList)[cardNo]].type);
+        $('.subType').text(cardList[Object.keys(cardList)[cardNo]].subType);
+        $('.attribute').text(cardList[Object.keys(cardList)[cardNo]].attribute);
+        $('.subAttribute').text(cardList[Object.keys(cardList)[cardNo]].subAttribute);
+        $('.damage').text(cardList[Object.keys(cardList)[cardNo]].damage);
+        $('.damagePlus').text(cardList[Object.keys(cardList)[cardNo]].damagePlus);
+        $('.defense').text(cardList[Object.keys(cardList)[cardNo]].defense);
+        $('.evoStage').text(cardList[Object.keys(cardList)[cardNo]].evoStage);
+        $('.evoCost').text(cardList[Object.keys(cardList)[cardNo]].evoCost);
+        $('.skillType').text(cardList[Object.keys(cardList)[cardNo]].skillType);
+        $('.skillDesc').text(cardList[Object.keys(cardList)[cardNo]].skillDesc);
+        $('.skillShort').text(cardList[Object.keys(cardList)[cardNo]].skillShort);
+        $('.drops').text(cardList[Object.keys(cardList)[cardNo]].drops);
+        $('.cardNumber').text(cardList[Object.keys(cardList)[cardNo]].cardNumber);
+        $('.cardType').text(cardList[Object.keys(cardList)[cardNo]].cardType);
+    }
+
+cardUpdate();
+
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

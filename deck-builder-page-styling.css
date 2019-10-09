@@ -1,0 +1,26 @@
+body {
+    background-color: darkblue;
+    color: white;
+}
+.deck-list {
+    flex-wrap: nowrap;
+}
+.deck-list>*>img {
+    height: 300px;
+}
+.individual-deck {
+    text-align: center;
+}
+.card-search-container {
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 350px;
+    overflow: scroll;
+}
+.card-search-list>*>img {
+    height: 300px;
+}
+.searched-card {
+    text-align: center;
+    width: 350px;
+}

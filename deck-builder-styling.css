@@ -1,0 +1,13 @@
+body {
+    background-color: darkblue;
+    color: white;
+}
+.deck-list {
+    flex-wrap: nowrap;
+}
+.deck-list>*>img {
+    height: 300px;
+}
+.individual-deck {
+    text-align: center;
+}

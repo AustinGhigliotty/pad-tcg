@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Deck Builder - PAD Card Game</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="deck-builder-page-styling.css">
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    var cardList;
+    $.getJSON("./cardList", callbackFuncWithData);
+
+    function callbackFuncWithData(data) {
+        cardList = data;
+    }
+    alert("Game is starting!");
+</script>
+<script src="deck-builder.js"></script>
+<script>
+	var buildingDeck = [];
+</script>
+
+<label for="card-search">Search:</label>
+<input type="text" id="card-search" onkeyup="cardSearch()">
+<div class="card-search-container">
+	<div class="card-search-list row">
+		
+	</div>
+</div>
+
+<div class="deck-row-container">
+	<div class="row deck-list">
+
+	</div>
+</div>
+
+<br>
+
+<label for="deck-name">Deck Name: </label>
+<input type="text" id="deck-name">
+
+<button id="build-deck-finish" onclick="createDeck()">Finish</button>
+
+<script>
+	function cardSearch() {
+        let totalCardWidth = 0;
+        let input = $('#card-search').val().toUpperCase();
+		$('.card-search-list').empty();
+        for (let i = 0; i < Object.keys(cardList).length; i++) {
+            if (Object.values(cardList)[i].name.toUpperCase().indexOf(input) > -1) {
+            	$('.card-search-list').append('<div class="col searched-card searched-card' + i + ' ' + Object.keys(cardList)[i] + '"><img src="cards/' + Object.keys(cardList)[i] + '.jpg"><p>' + Object.values(cardList)[i].name + '</p></div>');
+				totalCardWidth++;
+            }
+		}
+	    $('.card-search-list').width(totalCardWidth * 245);
+    }
+
+    $(document).on('click', '.searched-card', function () {
+        buildingDeck.push($(this).attr('class').split(' ')[3]);
+    });
+
+	function createDeck() {
+		var deckName = $('#deck-name').val();
+		var createdDeck = {};
+		createdDeck[deckName] = buildingDeck;
+		createdDeck = JSON.stringify(createdDeck);
+		createdDeck = btoa(createdDeck);
+		localStorage.setItem('_deckName', deckName);
+		localStorage.setItem('_createdDeck-' + deckName, createdDeck);
+        window.location = 'deck-builder.html';
+    }
+
+	// $('#build-deck-finish').on('click', function () {
+    //     savedDecks['deck' + (Object.keys(savedDecks).length + 1)] = buildingDeck;
+    // })
+</script>
+</body>
+</html>
