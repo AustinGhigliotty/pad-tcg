@@ -15,11 +15,10 @@
     function callbackFuncWithData(data) {
         cardList = data;
     }
-    alert("Game is starting!");
+    // alert("Game is starting!");
 </script>
 <div class="container card-viewer">
 	<img src="" alt="" class="viewing-card">
-<!--	<div class="skill-trans"></div>-->
 	<div class="monster-info"></div>
 </div>
 <div class="container hand-view-container">
@@ -28,7 +27,34 @@
 		<div class="col"></div>
 	</div>
 </div>
-<div class="container top-half"></div>
+<div class="container top-half">
+	<div id="enemy-drop-areas" class="row">
+		<div class="col empty-drop"></div>
+		<div id="enemy-drop-area3" class="col"></div>
+		<div id="enemy-drop-area2" class="col"></div>
+		<div id="enemy-drop-area1" class="col"></div>
+		<div class="col empty-drop"></div>
+		<div class="empty-space"></div>
+		<div id="enemy-discard-pile" class="col"></div>
+	</div>
+	<div class="vert-space"></div>
+	<div id="enemy-monster-area" class="row">
+		<div id="enemy-hp-area" class="col face-down"><img src="cards/back.jpg" alt="" class="enemy-hp-area"></div>
+		<div class="empty-space-sm"></div>
+		<div id="enemy-deck-area" class="col face-down"><img src="cards/back.jpg" alt="" class="enemy-deck"></div>
+		<div class="empty-space"></div>
+		<div id="enemy-monster5" class="col"></div>
+		<div id="enemy-monster4" class="col"></div>
+		<div id="enemy-monster3" class="col"></div>
+		<div id="enemy-monster2" class="col"></div>
+		<div id="enemy-monster1" class="col"></div>
+	</div>
+	<div class="enemy-attack-area"></div>
+</div>
+
+                <!--///////////////////////////////////////////////////////////////////////////-->
+
+
 <div class="container bottom-half">
 	<div class="attack-area"></div>
 	<div id="monster-area" class="row">
@@ -41,15 +67,6 @@
 		<div id="deck-area" class="col face-down"><img src="cards/back.jpg" alt="" class="deck"></div>
 		<div class="empty-space-sm"></div>
 		<div id="hp-area" class="col face-down"><img src="cards/back.jpg" alt="" class="hp-area"></div>
-<!--		<div class="empty-space"></div>-->
-<!--		<div id="hp-area">-->
-<!--			<div id="hp1"><img src="cards/back.jpg" alt=""></div>-->
-<!--			<div id="hp2"><img src="cards/back.jpg" alt=""></div>-->
-<!--			<div id="hp3"><img src="cards/back.jpg" alt=""></div>-->
-<!--			<div id="hp4"><img src="cards/back.jpg" alt=""></div>-->
-<!--			<div id="hp5"><img src="cards/back.jpg" alt=""></div>-->
-<!--		</div>-->
-<!--		<div class="deck-count"></div>-->
 	</div>
 	<div class="vert-space"></div>
 	<div id="drop-areas" class="row">
