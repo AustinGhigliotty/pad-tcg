@@ -18,6 +18,7 @@
     var clickedCard;
     var currentPhase = "";
     var puzzleCardFromDeck;
+    var monstersHaveEvolved = [0,0,0,0,0];
 
     var enemyBaseDeck = ["shynee", "bigShynee", "kingShynee", "ra", "evoRa", "UEvoLightRa", "amaterasu", "evoAmaterasu", "UEvoAmaterasu",
         "mermaid", "siren", "evoSiren", "valkyrie", "evoValkyrie", "UEvoValkyrie", "healerEnhance", "kingGoldDragon", "topalit", "sapphilit",
@@ -256,11 +257,16 @@
                         selectedCard2 = '';
                         selectedCardClass2 = '';
                         mainCancel();
+
+                    } else if ( monstersHaveEvolved[((selectedCardClass2.charAt(selectedCardClass2.length-1))-1)] === 1 ) {
+                        console.log("This monster has already evolved this turn");
+
                     } else {
                         console.log("evolve");
                         var evolvedMonster = hand.splice((parseInt(selectedCardClass.charAt(selectedCardClass.length - 1)) - 1), 1).toString();
                         console.log(evolvedMonster);
                         baseMonsters[(parseInt(selectedCardClass2.charAt(selectedCardClass2.length - 1)) - 1)] = evolvedMonster;
+                        monstersHaveEvolved[(parseInt(selectedCardClass2.charAt(selectedCardClass2.length - 1)) - 1)] = 1;
                         $('.monster-card' + (parseInt(selectedCardClass2.charAt(selectedCardClass2.length - 1)))).attr("src", $('.hand-card' + (parseInt(selectedCardClass.charAt(selectedCardClass.length - 1)))).attr("src"));
                         selectedCardClass = '';
                         selectedCard2 = '';
@@ -335,6 +341,7 @@
         currentPhase = "Activate";
         turns++;
         alert("Turn " + turns + "!");
+        monstersHaveEvolved = [0,0,0,0,0];
         if (monstersRolled.indexOf(1) === -1) {
             for (let i = 0; i < 5; i++) {
                 if (monstersRolled[i] === 1) {
