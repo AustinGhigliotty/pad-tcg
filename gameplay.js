@@ -1,8 +1,18 @@
 // (function () {
 
-    var baseDeck = ["artemis", "evoArtemis", "UEvoArtemis", "tyrra", "tyran", "tyrannos", "ultTyrannos", "plessie", "plesiel", "plesios",
-        "ultPlesios", "brachy", "brachio", "brachys", "ultBrachys", "dryad", "mandrake", "alraune", "heavyMetalDragon", "zaerog", "zeus",
-        "evoZeus", "rubylit", "sapphilit", "emelit", "topalit", "amelit", "cure", "world"];
+
+for (var i = 0; i < localStorage.length; i++) {
+    if (localStorage.key(i).indexOf('_playingDeck') > -1) {
+        var baseDeck = JSON.parse(atob(localStorage.getItem(localStorage.key(i))));
+        baseDeck = Object.values(baseDeck)[0];
+        localStorage.removeItem(localStorage.key(i));
+        i = localStorage.length;
+    }
+}
+
+    // var baseDeck = ["artemis", "evoArtemis", "UEvoArtemis", "tyrra", "tyran", "tyrannos", "ultTyrannos", "plessie", "plesiel", "plesios",
+    //     "ultPlesios", "brachy", "brachio", "brachys", "ultBrachys", "dryad", "mandrake", "alraune", "heavyMetalDragon", "zaerog", "zeus",
+    //     "evoZeus", "rubylit", "sapphilit", "emelit", "topalit", "amelit", "cure", "world"];
     var baseMonsters = ["tyrra", "plessie", "brachy", "dryad", "goldenEgg"];
     var curDeck = baseDeck;
     var HP = [];

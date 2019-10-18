@@ -72,8 +72,9 @@
 <br>
 <br>
 
-<a class="start-button" href="game-board.html" onclick="localStorage.setItem('_isEditing', 'false');"><button>Start Game</button></a>
-<span class="selected-deck">No deck selected</span>
+<a class="start-button" href="game-board.html" onclick="localStorage.setItem('_playingDeck' + $('.selected-deck').text(), localStorage.getItem('_createdDeck' + $('.selected-deck').text()));
+"><button>Start Game</button></a>
+<span>Chosen deck: </span><span class="selected-deck">No deck selected</span>
 
 <script>
     if (Object.keys(savedDecks).length === 0) {
@@ -106,7 +107,7 @@
     // })
 
     $(document).on('click', '.individual-deck', function () {
-        $('.selected-deck').text('Chosen Deck: ' + Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]]);
+        $('.selected-deck').text(Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]]);
     })
 
 </script>
