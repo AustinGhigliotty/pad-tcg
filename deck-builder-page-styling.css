@@ -24,3 +24,17 @@ body {
     text-align: center;
     width: 350px;
 }
+.shown-cards {
+    margin: 0;
+    max-width: 100%;
+}
+.shown-cards>* {
+    height: 200px;
+}
+.shown-cards>*>* {
+    width: 142px;
+    padding: 5px;
+}
+.shown-cards>*>*>img {
+    width: 132px;
+}

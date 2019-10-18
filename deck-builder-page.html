@@ -10,10 +10,17 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
     var cardList;
-    $.getJSON("./cardList", callbackFuncWithData);
+    $.getJSON("./cardList", getCardList);
 
-    function callbackFuncWithData(data) {
+    function getCardList(data) {
         cardList = data;
+    }
+
+    var myDecks;
+    $.getJSON("./myDecks", getSavedDecks);
+
+    function getSavedDecks(data) {
+        myDecks = data;
     }
     alert("Game is starting!");
 </script>
@@ -26,7 +33,7 @@
 <input type="text" id="card-search" onkeyup="cardSearch()">
 <div class="card-search-container">
 	<div class="card-search-list row">
-		
+
 	</div>
 </div>
 
@@ -42,6 +49,24 @@
 <input type="text" id="deck-name">
 
 <button id="build-deck-finish" onclick="createDeck()">Finish</button>
+<span class="card-count"></span>
+
+<script>
+    $('.card-count').text(buildingDeck.length + ' cards');
+
+	$('html').append('<div class="container shown-cards">');
+        $('.shown-cards').append('<div class="row shown-cards-row">');
+	// for (let i = 0; i < 6; i++) {
+        // $('.shown-cards').append('<div class="row row' + i + '">');
+        // for (let j = 0; j < 10; j++) {
+            // $('.shown-cards-row').append('<div class="shown-card shown-card' + (j + (i*10)) + '"></div>');
+	// 	}
+	// }
+        $('.shown-cards').append('</div>');
+    $('html').append('</div>');
+	$('.shown-card').css('width', ($('.shown-cards').css('width')/10));
+
+</script>
 
 <script>
 	function cardSearch() {
@@ -59,7 +84,28 @@
 
     $(document).on('click', '.searched-card', function () {
         buildingDeck.push($(this).attr('class').split(' ')[3]);
+        updateShownCards();
+        $('.card-count').text(buildingDeck.length + ' cards');
     });
+
+    $(document).on('click', '.shown-card', function () {
+        // buildingDeck.push($(this).attr('class').split(' ')[3]);
+        buildingDeck.splice($(this).attr('class').split(' ')[1].split('shown-card')[1], 1);
+        $('.shown-card' + buildingDeck.length).empty();
+        updateShownCards();
+        $('.card-count').text(buildingDeck.length + ' cards');
+    });
+
+	function updateShownCards() {
+	    for (let i = 0; i < buildingDeck.length; i++) {
+	        if (i < $('.shown-cards-row').children().length) {
+	        	$('.shown-card' + i).empty();
+			} else {
+                $('.shown-cards-row').append('<div class="shown-card shown-card' + i + '"></div>');
+			}
+            $('.shown-card' + i).append('<img src="cards/' + buildingDeck[i] + '.jpg">');
+		}
+    }
 
 	function createDeck() {
 		var deckName = $('#deck-name').val();
@@ -67,14 +113,11 @@
 		createdDeck[deckName] = buildingDeck;
 		createdDeck = JSON.stringify(createdDeck);
 		createdDeck = btoa(createdDeck);
-		localStorage.setItem('_deckName', deckName);
-		localStorage.setItem('_createdDeck-' + deckName, createdDeck);
+		localStorage.setItem('_createdDeck' + deckName, createdDeck);
+
         window.location = 'deck-builder.html';
     }
 
-	// $('#build-deck-finish').on('click', function () {
-    //     savedDecks['deck' + (Object.keys(savedDecks).length + 1)] = buildingDeck;
-    // })
 </script>
 </body>
 </html>

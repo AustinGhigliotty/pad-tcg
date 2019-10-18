@@ -10,29 +10,50 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
     var cardList;
-    $.getJSON("./cardList", callbackFuncWithData);
+    $.getJSON("./cardList", getCardList);
 
-    function callbackFuncWithData(data) {
+    function getCardList(data) {
         cardList = data;
     }
-    // alert("Game is starting!");
 </script>
 <script src="deck-builder.js"></script>
 <script>
-	function getCreatedDeck() {
-	    var deckName = localStorage.getItem('_deckName');
-		var createdDeck = localStorage.getItem('_createdDeck-' + deckName);
-        // var createdDeck = localStorage[0];
-		if (!createdDeck) {return false;}
-        // localStorage.removeItem('_createdDeck');
-        createdDeck = atob(createdDeck);
-        createdDeck = JSON.parse(createdDeck);
-        var createdDeckName = Object.keys(createdDeck)[0];
-        var createdDeckValues = Object.values(createdDeck)[0];
-        savedDecks[createdDeckName] = createdDeckValues;
+	function getCreatedDecks() {
+        for (var i = 0; i < localStorage.length; i++) {
+            if (localStorage.key(i).indexOf('_createdDeck') > -1) {
+                var createdDeck = localStorage.getItem(localStorage.key(i));
+                if (!createdDeck) {
+                    return false;
+                }
+                createdDeck = atob(createdDeck);
+                createdDeck = JSON.parse(createdDeck);
+                var createdDeckValues = Object.values(createdDeck)[0];
+
+                savedDecks[Object.keys(createdDeck)] = createdDeckValues;
+            }
+        }
         return true;
     }
-	getCreatedDeck();
+
+    function sortObject(o) {
+        var sorted = {},
+            key, a = [];
+
+        for (key in o) {
+            if (o.hasOwnProperty(key)) {
+                a.push(key);
+            }
+        }
+
+        a.sort();
+
+        for (key = 0; key < a.length; key++) {
+            sorted[a[key]] = o[a[key]];
+        }
+        return sorted;
+    }
+
+	getCreatedDecks();
 </script>
 
 <div class="deck-row-container">
@@ -46,19 +67,25 @@
 <a href="deck-builder-page.html"><button>Make new deck</button></a>
 
 <script>
+	
 	function deckListUpdate() {
+	    savedDecks = sortObject(savedDecks);
         $('.deck-list').empty();
         for (let i = 0; i < Object.keys(savedDecks).length; i++) {
-            if (Object.values(savedDecks)[i].length < 40) {
-                $('.deck-list').append('<div class="col-3 individual-deck"><img src="cards/' + Object.values(savedDecks)[i][0] + '.jpg"><p style="color: yellow">' + Object.keys(savedDecks)[i] + ' !</p><p>(Missing ' + (40 - Object.values(savedDecks)[i].length) + ' cards)</p></div>');
-            } else if (Object.values(savedDecks)[i].length > 60) {
-                $('.deck-list').append('<div class="col-3 individual-deck"><img src="cards/' + Object.values(savedDecks)[i][0] + '.jpg"><p style="color: yellow">' + Object.keys(savedDecks)[i] + ' !</p><p>(' + (Object.values(savedDecks)[i].length - 60) + ' too many cards)</p></div>');
-			} else {
-                $('.deck-list').append('<div class="col-3 individual-deck"><img src="cards/' + Object.values(savedDecks)[i][0] + '.jpg"><p>' + Object.keys(savedDecks)[i] + '</p><p>(' + Object.values(savedDecks)[i].length + ' cards)</p></div>');
+            if (Object.values(savedDecks)[i].length < 40 || Object.values(savedDecks)[i].length > 60) {
+                $('.deck-list').append('<div class="col-3 individual-deck deck' + i + '"><img src="cards/' + Object.values(savedDecks)[i][0] + '.jpg"><p style="color: red">' + Object.keys(savedDecks)[i] + '</p><p>(' + Object.values(savedDecks)[i].length + ' cards)</p></div>');
+            } else {
+                $('.deck-list').append('<div class="col-3 individual-deck deck' + i + '"><img src="cards/' + Object.values(savedDecks)[i][0] + '.jpg"><p>' + Object.keys(savedDecks)[i] + '</p><p>(' + Object.values(savedDecks)[i].length + ' cards)</p></div>');
             }
         }
     }
-    deckListUpdate();
+    setTimeout(function () {
+    	deckListUpdate();
+    }, 1000);
+
+    $(document).on('click', '.individual-deck', function () {
+        localStorage.getItem('_createdDeck' + Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]]);
+    })
 
 </script>
 </body>
