@@ -19,6 +19,7 @@
     var currentPhase = "";
     var puzzleCardFromDeck;
     var monstersHaveEvolved = [0,0,0,0,0];
+    var combosMade = [0,0,0,0,0,0];
 
     var enemyBaseDeck = ["shynee", "bigShynee", "kingShynee", "ra", "evoRa", "UEvoLightRa", "amaterasu", "evoAmaterasu", "UEvoAmaterasu",
         "mermaid", "siren", "evoSiren", "valkyrie", "evoValkyrie", "UEvoValkyrie", "healerEnhance", "kingGoldDragon", "topalit", "sapphilit",
@@ -328,9 +329,45 @@
             }
             curDeck.shift();
             dropRefresh();
+            checkCombos();
             $('.end-puzzle').css('visibility', 'visible');
         }
     });
+
+    function checkCombos() {
+        for (let h = 0; h <= 2; h++) {
+            let numberOfDrops = [0, 0, 0, 0, 0, 0];
+            let drops = [];
+            // for (let i = 0; i <= 2; i++) {
+                for (let j = 0; j < (eval('dropArea' + (h + 1))).length; j++) {
+                    console.log(cardList[eval('dropArea' + (h + 1))[j]].drops);
+                    for (let k = 0; k < (cardList[eval('dropArea' + (h + 1))[j]].drops).length; k++) {
+                        drops.push(cardList[eval('dropArea' + (h + 1))[j]].drops[k]);
+                    }
+                }
+                console.log(drops);
+            // }
+            for (let i = 0; i < drops.length; i++) {
+                if (drops[i] === 'Fire') {numberOfDrops[0]++}
+                if (drops[i] === 'Water') {numberOfDrops[1]++}
+                if (drops[i] === 'Wood') {numberOfDrops[2]++}
+                if (drops[i] === 'Light') {numberOfDrops[3]++}
+                if (drops[i] === 'Dark') {numberOfDrops[4]++}
+                if (drops[i] === 'Heal') {numberOfDrops[5]++}
+            }
+            for (let i = 0; i <= 5; i++) {
+                if (numberOfDrops[i] >= 3) {
+                    combosMade[i] = 1;
+                    console.log(combosMade);
+                }
+            }
+            if (Math.max(...combosMade) > 0) {
+                console.log('h: ' + h);
+                h = 3;
+                console.log('h: ' + h);
+            }
+        }
+    }
 
     function endPuzzle() {
     }
