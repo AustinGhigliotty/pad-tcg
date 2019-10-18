@@ -16,7 +16,9 @@
         cardList = data;
     }
 </script>
-<script src="deck-builder.js"></script>
+<script>
+	var savedDecks = {};
+</script>
 <script>
 	function getCreatedDecks() {
         for (var i = 0; i < localStorage.length; i++) {
@@ -64,27 +66,47 @@
 
 <br>
 
-<a href="deck-builder-page.html"><button>Make new deck</button></a>
+<a href="deck-builder-page.html" onclick="localStorage.setItem('_isEditing', 'false');"><button>Make new deck</button></a>
+<br>
+<br>
+<br>
+<br>
+
+<a class="start-button" href="game-board.html" onclick="localStorage.setItem('_isEditing', 'false');"><button>Start Game</button></a>
+<span class="selected-deck">No deck selected</span>
 
 <script>
+    if (Object.keys(savedDecks).length === 0) {
+        $('.deck-list').append('<h3>&emsp; You have no decks!</h3>')
+    } else {
+        setTimeout(function () {
+            deckListUpdate();
+        }, 1000);
+	}
 	
 	function deckListUpdate() {
 	    savedDecks = sortObject(savedDecks);
         $('.deck-list').empty();
         for (let i = 0; i < Object.keys(savedDecks).length; i++) {
             if (Object.values(savedDecks)[i].length < 40 || Object.values(savedDecks)[i].length > 60) {
-                $('.deck-list').append('<div class="col-3 individual-deck deck' + i + '"><img src="cards/' + Object.values(savedDecks)[i][0] + '.jpg"><p style="color: red">' + Object.keys(savedDecks)[i] + '</p><p>(' + Object.values(savedDecks)[i].length + ' cards)</p></div>');
+                $('.deck-list').append('<div class="col-3 individual-deck deck' + i + '"><img src="cards/' + Object.values(savedDecks)[i][0] + '.jpg"><p><span style="color: red">' + Object.keys(savedDecks)[i] + '</span> - (' + Object.values(savedDecks)[i].length + ' cards)</p></div>');
             } else {
-                $('.deck-list').append('<div class="col-3 individual-deck deck' + i + '"><img src="cards/' + Object.values(savedDecks)[i][0] + '.jpg"><p>' + Object.keys(savedDecks)[i] + '</p><p>(' + Object.values(savedDecks)[i].length + ' cards)</p></div>');
+                $('.deck-list').append('<div class="col-3 individual-deck deck' + i + '"><img src="cards/' + Object.values(savedDecks)[i][0] + '.jpg"><p>' + Object.keys(savedDecks)[i] + ' - (' + Object.values(savedDecks)[i].length + ' cards)</p></div>');
             }
+            $('.deck' + i).append('<p><a href="deck-builder-page.html" onclick="localStorage.setItem(\'_isEditing\', \'true\');localStorage.setItem(\'_editingDeck\' + Object.keys(savedDecks)[$(this).parent().parent().attr(\'class\').split(\' \')[2].split(\'deck\')[1]], localStorage.getItem(\'_createdDeck\' + Object.keys(savedDecks)[$(this).parent().parent().attr(\'class\').split(\' \')[2].split(\'deck\')[1]]));' +
+				'">Edit</a> | <a href="">Delete</a></p>');
         }
     }
-    setTimeout(function () {
-    	deckListUpdate();
-    }, 1000);
+
+    // $(document).on('click', '.individual-deck', function () {
+    //     // localStorage.getItem('_createdDeck' + Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]]);
+    //     localStorage.setItem('_editingDeck' + Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]], localStorage.getItem('_createdDeck' + Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]]));
+    //     localStorage.setItem('_isEditing', 'true');
+    //     window.open('deck-builder-page.html', '_self');
+    // })
 
     $(document).on('click', '.individual-deck', function () {
-        localStorage.getItem('_createdDeck' + Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]]);
+        $('.selected-deck').text('Chosen Deck: ' + Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]]);
     })
 
 </script>

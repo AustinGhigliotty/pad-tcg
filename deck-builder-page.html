@@ -16,17 +16,21 @@
         cardList = data;
     }
 
-    var myDecks;
-    $.getJSON("./myDecks", getSavedDecks);
-
-    function getSavedDecks(data) {
-        myDecks = data;
-    }
+    // var myDecks;
+    // $.getJSON("./myDecks", getSavedDecks);
+	//
+    // function getSavedDecks(data) {
+    //     myDecks = data;
+    // }
     alert("Game is starting!");
 </script>
-<script src="deck-builder.js"></script>
 <script>
 	var buildingDeck = [];
+	var savedDecks = {};
+	var isEditing = localStorage.getItem('_isEditing');
+	var editingDeck;
+
+
 </script>
 
 <label for="card-search">Search:</label>
@@ -52,6 +56,26 @@
 <span class="card-count"></span>
 
 <script>
+    if (isEditing === "true") {
+        for (var i = 0; i < localStorage.length; i++) {
+            if (localStorage.key(i).indexOf('_editingDeck') > -1) {
+                editingDeck = JSON.parse(atob(localStorage.getItem(localStorage.key(i))));
+
+                // var createdDeck = localStorage.getItem(localStorage.key(i));
+                // if (!createdDeck) {
+                //     return false;
+                // }
+                // createdDeck = atob(createdDeck);
+                // createdDeck = JSON.parse(createdDeck);
+
+                i = localStorage.length;
+                buildingDeck = Object.values(editingDeck)[0];
+                $('#deck-name').val(Object.keys(editingDeck)[0]);
+
+            }
+        }
+    }
+
     $('.card-count').text(buildingDeck.length + ' cards');
 
 	$('html').append('<div class="container shown-cards">');
@@ -89,7 +113,6 @@
     });
 
     $(document).on('click', '.shown-card', function () {
-        // buildingDeck.push($(this).attr('class').split(' ')[3]);
         buildingDeck.splice($(this).attr('class').split(' ')[1].split('shown-card')[1], 1);
         $('.shown-card' + buildingDeck.length).empty();
         updateShownCards();
@@ -106,6 +129,7 @@
             $('.shown-card' + i).append('<img src="cards/' + buildingDeck[i] + '.jpg">');
 		}
     }
+    updateShownCards();
 
 	function createDeck() {
 		var deckName = $('#deck-name').val();
@@ -113,6 +137,10 @@
 		createdDeck[deckName] = buildingDeck;
 		createdDeck = JSON.stringify(createdDeck);
 		createdDeck = btoa(createdDeck);
+		if (isEditing === "true") {
+		    localStorage.removeItem('_createdDeck' + Object.keys(editingDeck)[0]);
+		    localStorage.removeItem('_editingDeck' + Object.keys(editingDeck)[0]);
+		}
 		localStorage.setItem('_createdDeck' + deckName, createdDeck);
 
         window.location = 'deck-builder.html';
