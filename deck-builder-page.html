@@ -26,9 +26,12 @@
 </script>
 <script>
 	var buildingDeck = [];
+	var buildingBase = [];
 	var savedDecks = {};
 	var isEditing = localStorage.getItem('_isEditing');
 	var editingDeck;
+	var building = "Base";
+	var takenNames = [];
 
 
 </script>
@@ -42,9 +45,8 @@
 </div>
 
 <div class="deck-row-container">
-	<div class="row deck-list">
-
-	</div>
+	<div class="row deck-list"></div>
+	<div class="row base-monster-list"></div>
 </div>
 
 <br>
@@ -52,8 +54,12 @@
 <label for="deck-name">Deck Name: </label>
 <input type="text" id="deck-name">
 
-<button id="build-deck-finish" onclick="createDeck()">Finish</button>
+<button id="build-deck-disabled" disabled="disabled">Finish</button>
+<button id="build-deck-finish" onclick="createDeck()" style="display: none">Finish</button>
 <span class="card-count"></span>
+
+<button id="toggle-deck" onclick="building = 'Deck'; updateShownCards();">Deck</button>
+<button id="toggle-base-monsters" onclick="building = 'Base'; updateShownCards();">Base Monsters</button>
 
 <script>
     if (isEditing === "true") {
@@ -90,6 +96,12 @@
     $('html').append('</div>');
 	$('.shown-card').css('width', ($('.shown-cards').css('width')/10));
 
+    for (var j = 0; j < localStorage.length; j++) {
+        if (localStorage.key(j).indexOf('_createdDeck') > -1) {
+			takenNames.push(localStorage.key(j).split('_createdDeck')[1]);
+        }
+    }
+
 </script>
 
 <script>
@@ -106,42 +118,101 @@
 	    $('.card-search-list').width(totalCardWidth * 245);
     }
 
+    $(document).keyup('.deck-name', function () {
+        if (buildingBase.length === 5 && ($('#deck-name').val() !== '') && takenNames.indexOf($('#deck-name').val()) === -1) {
+            $('#build-deck-disabled').css('display', 'none');
+            $('#build-deck-finish').css('display', 'inline');
+        } else {
+            $('#build-deck-disabled').css('display', 'inline');
+            $('#build-deck-finish').css('display', 'none');
+		}
+    });
+
     $(document).on('click', '.searched-card', function () {
-        buildingDeck.push($(this).attr('class').split(' ')[3]);
-        updateShownCards();
-        $('.card-count').text(buildingDeck.length + ' cards');
+        if (building === "Deck") {
+            buildingDeck.push($(this).attr('class').split(' ')[3]);
+            updateShownCards();
+            $('.card-count').text(buildingDeck.length + ' cards');
+        } else if (building === "Base") {
+            if (buildingBase.length < 5) {
+                buildingBase.push($(this).attr('class').split(' ')[3]);
+                updateShownCards();
+                if (buildingBase.length === 5 && ($('#deck-name').val() !== '') && takenNames.indexOf($('#deck-name').val()) === -1) {
+                    $('#build-deck-disabled').css('display', 'none');
+                    $('#build-deck-finish').css('display', 'inline');
+				} else {
+                    $('#build-deck-disabled').css('display', 'inline');
+                    $('#build-deck-finish').css('display', 'none');
+                }
+            }
+		}
     });
 
     $(document).on('click', '.shown-card', function () {
-        buildingDeck.splice($(this).attr('class').split(' ')[1].split('shown-card')[1], 1);
-        $('.shown-card' + buildingDeck.length).empty();
-        updateShownCards();
-        $('.card-count').text(buildingDeck.length + ' cards');
+        if (building === "Deck") {
+            buildingDeck.splice($(this).attr('class').split(' ')[1].split('shown-card')[1], 1);
+            $('.shown-card' + buildingDeck.length).empty();
+            updateShownCards();
+            $('.card-count').text(buildingDeck.length + ' cards');
+        } else if (building === "Base") {
+            buildingBase.splice($(this).attr('class').split(' ')[1].split('shown-card')[1], 1);
+            $('.shown-card' + buildingBase.length).empty();
+            $('#build-deck-disabled').css('display', 'inline');
+            $('#build-deck-finish').css('display', 'none');
+            updateShownCards();
+        }
     });
 
 	function updateShownCards() {
-	    for (let i = 0; i < buildingDeck.length; i++) {
-	        if (i < $('.shown-cards-row').children().length) {
-	        	$('.shown-card' + i).empty();
-			} else {
-                $('.shown-cards-row').append('<div class="shown-card shown-card' + i + '"></div>');
-			}
-            $('.shown-card' + i).append('<img src="cards/' + buildingDeck[i] + '.jpg">');
+	    $('.shown-cards-row').empty();
+	    if (building === "Deck") {
+            for (let i = 0; i < buildingDeck.length; i++) {
+                // if (i < $('.shown-cards-row').children().length) {
+                //     $('.shown-card' + i).empty();
+                // } else {
+                    $('.shown-cards-row').append('<div class="shown-card shown-card' + i + '"></div>');
+                // }
+                $('.shown-card' + i).append('<img src="cards/' + buildingDeck[i] + '.jpg">');
+            }
+        } else if (building === "Base") {
+            for (let i = 0; i < buildingBase.length; i++) {
+                // if (i < $('.shown-cards-row').children().length) {
+                //     $('.shown-card' + i).empty();
+                // } else {
+                    $('.shown-cards-row').append('<div class="shown-card shown-card' + i + '"></div>');
+                // }
+                $('.shown-card' + i).append('<img src="cards/' + buildingBase[i] + '.jpg">');
+            }
 		}
     }
     updateShownCards();
+	
+	// function toggleBuild() {
+	//     if (building === 'Base') {
+    //         $('.base-monster-list').css('display', 'flex');
+    //         $('.deck-list').css('display', 'none');
+	// 	} else if (building === "Deck") {
+	// 		$('.base-monster-list').css('display', 'none');
+    //         $('.deck-list').css('display', 'flex');
+	// 	}
+    // }
 
 	function createDeck() {
 		var deckName = $('#deck-name').val();
 		var createdDeck = {};
+		var createdBaseMonsters = {};
 		createdDeck[deckName] = buildingDeck;
 		createdDeck = JSON.stringify(createdDeck);
 		createdDeck = btoa(createdDeck);
+        createdBaseMonsters[deckName] = buildingBase;
+        createdBaseMonsters = JSON.stringify(createdBaseMonsters);
+        createdBaseMonsters = btoa(createdBaseMonsters);
 		if (isEditing === "true") {
 		    localStorage.removeItem('_createdDeck' + Object.keys(editingDeck)[0]);
 		    localStorage.removeItem('_editingDeck' + Object.keys(editingDeck)[0]);
 		}
 		localStorage.setItem('_createdDeck' + deckName, createdDeck);
+        localStorage.setItem('_baseMonsters' + deckName, createdBaseMonsters);
 
         window.location = 'deck-builder.html';
     }

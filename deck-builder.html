@@ -76,6 +76,42 @@
 "><button>Start Game</button></a>
 <span>Chosen deck: </span><span class="selected-deck">No deck selected</span>
 
+<br><br><br><br><br>
+<a class="start-random-button" onclick=""><button>Start Random Game</button></a>
+<script>
+    $(document).on('click', '.start-random-button', function () {
+        let RDeckLength = Math.ceil(Math.random()*21) + 39;
+        let RDeck = [];
+        let RBMons = [];
+        for (let i = 0; i < RDeckLength; i++) {
+            RDeck.push(Object.keys(cardList)[Math.ceil(Math.random()*Object.keys(cardList).length)]);
+		}
+        for (let i = 0; i < 5; i++) {
+            RBMons.push(Object.keys(cardList)[Math.ceil(Math.random()*Object.keys(cardList).length)]);
+		}
+
+        let RDeckObj = {};
+        let RBMonsObj = {};
+        RDeckObj['random'] = RDeck;
+        RDeckObj = JSON.stringify(RDeckObj);
+        RDeckObj = btoa(RDeckObj);
+        RBMonsObj['random'] = RBMons;
+        RBMonsObj = JSON.stringify(RBMonsObj);
+        RBMonsObj = btoa(RBMonsObj);
+
+        localStorage.setItem('_playingDeckRandom', RDeckObj);
+        localStorage.setItem('_baseMonstersRandom', RBMonsObj);
+
+        for (var i = 0; i < localStorage.length; i++) {
+            if (localStorage.key(i).indexOf('_playingDeck') > -1) {
+                alert((((localStorage.key(i)))));
+            }
+        }
+
+        window.open("game-board.html","_self")
+    });
+</script>
+
 <script>
     if (Object.keys(savedDecks).length === 0) {
         $('.deck-list').append('<h3>&emsp; You have no decks!</h3>')
@@ -95,19 +131,15 @@
                 $('.deck-list').append('<div class="col-3 individual-deck deck' + i + '"><img src="cards/' + Object.values(savedDecks)[i][0] + '.jpg"><p>' + Object.keys(savedDecks)[i] + ' - (' + Object.values(savedDecks)[i].length + ' cards)</p></div>');
             }
             $('.deck' + i).append('<p><a href="deck-builder-page.html" onclick="localStorage.setItem(\'_isEditing\', \'true\');localStorage.setItem(\'_editingDeck\' + Object.keys(savedDecks)[$(this).parent().parent().attr(\'class\').split(\' \')[2].split(\'deck\')[1]], localStorage.getItem(\'_createdDeck\' + Object.keys(savedDecks)[$(this).parent().parent().attr(\'class\').split(\' \')[2].split(\'deck\')[1]]));' +
-				'">Edit</a> | <a href="">Delete</a></p>');
+				'">Edit</a> | <a onclick="var confirmDelete = confirm(\'Are you sure you want to delete this deck?\'); if (confirmDelete) {localStorage.removeItem(\'_createdDeck\' + Object.keys(savedDecks)[$(this).parent().parent().attr(\'class\').split(\' \')[2].split(\'deck\')[1]]); localStorage.removeItem(\'_baseMonsters\' + Object.keys(savedDecks)[$(this).parent().parent().attr(\'class\').split(\' \')[2].split(\'deck\')[1]]);}' +
+				'" href="">Delete</a></p>');
         }
     }
 
-    // $(document).on('click', '.individual-deck', function () {
-    //     // localStorage.getItem('_createdDeck' + Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]]);
-    //     localStorage.setItem('_editingDeck' + Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]], localStorage.getItem('_createdDeck' + Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]]));
-    //     localStorage.setItem('_isEditing', 'true');
-    //     window.open('deck-builder-page.html', '_self');
-    // })
 
     $(document).on('click', '.individual-deck', function () {
         $('.selected-deck').text(Object.keys(savedDecks)[$(this).attr('class').split(' ')[2].split('deck')[1]]);
+        localStorage.removeItem('_playingDeckNo deck selected');
     })
 
 </script>

@@ -3,17 +3,32 @@
 
 for (var i = 0; i < localStorage.length; i++) {
     if (localStorage.key(i).indexOf('_playingDeck') > -1) {
+        // console.log((((localStorage.key(i)))));
+        // console.log(((localStorage.getItem(localStorage.key(i)))));
+        // console.log((atob(localStorage.getItem(localStorage.key(i)))));
+        // console.log(JSON.parse(atob(localStorage.getItem(localStorage.key(i)))));
         var baseDeck = JSON.parse(atob(localStorage.getItem(localStorage.key(i))));
+        if (localStorage.key(i).indexOf('Random') === -1) {
+            var baseMonsters = JSON.parse(atob(localStorage.getItem('_baseMonsters' + Object.keys(baseDeck))));
+            baseMonsters = Object.values(baseMonsters)[0];
+        }
+        console.log(baseDeck);
         baseDeck = Object.values(baseDeck)[0];
         localStorage.removeItem(localStorage.key(i));
         i = localStorage.length;
+    }
+}
+for (var j = 0; j < localStorage.length; j++) {
+    if (localStorage.key(j).indexOf('_baseMonstersRandom') > -1) {
+        var baseMonsters = JSON.parse(atob(localStorage.getItem('_baseMonstersRandom')));
+        localStorage.removeItem(localStorage.key(i));
     }
 }
 
     // var baseDeck = ["artemis", "evoArtemis", "UEvoArtemis", "tyrra", "tyran", "tyrannos", "ultTyrannos", "plessie", "plesiel", "plesios",
     //     "ultPlesios", "brachy", "brachio", "brachys", "ultBrachys", "dryad", "mandrake", "alraune", "heavyMetalDragon", "zaerog", "zeus",
     //     "evoZeus", "rubylit", "sapphilit", "emelit", "topalit", "amelit", "cure", "world"];
-    var baseMonsters = ["tyrra", "plessie", "brachy", "dryad", "goldenEgg"];
+    // var baseMonsters = ["tyrra", "plessie", "brachy", "dryad", "goldenEgg"];
     var curDeck = baseDeck;
     var HP = [];
     var hand = [];
@@ -328,7 +343,7 @@ for (var i = 0; i < localStorage.length; i++) {
     $(document).on('click', '.drops', function () {
         if (currentPhase === "Puzzle" && puzzleCardFromDeck === false) {
             puzzleCardFromDeck = true;
-            $('.deck').css('src', 'cards/back.jpg');
+            $('.deck').attr('src', 'cards/back.jpg');
             let selectedDropArea = $(this).attr('class').split(' ')[1];
             if (parseInt(selectedDropArea.charAt(selectedDropArea.length - 1)) === 1) {
                 dropArea1.push(curDeck[0]);
