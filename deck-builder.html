@@ -102,12 +102,6 @@
         localStorage.setItem('_playingDeckRandom', RDeckObj);
         localStorage.setItem('_baseMonstersRandom', RBMonsObj);
 
-        for (var i = 0; i < localStorage.length; i++) {
-            if (localStorage.key(i).indexOf('_playingDeck') > -1) {
-                alert((((localStorage.key(i)))));
-            }
-        }
-
         window.open("game-board.html","_self")
     });
 </script>

@@ -21,7 +21,8 @@ for (var i = 0; i < localStorage.length; i++) {
 for (var j = 0; j < localStorage.length; j++) {
     if (localStorage.key(j).indexOf('_baseMonstersRandom') > -1) {
         var baseMonsters = JSON.parse(atob(localStorage.getItem('_baseMonstersRandom')));
-        localStorage.removeItem(localStorage.key(i));
+        baseMonsters = Object.values(baseMonsters)[0];
+        localStorage.removeItem('_baseMonstersRandom');
     }
 }
 
