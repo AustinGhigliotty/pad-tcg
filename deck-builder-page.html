@@ -56,7 +56,7 @@
 
 <button id="build-deck-disabled" disabled="disabled">Finish</button>
 <button id="build-deck-finish" onclick="createDeck()" style="display: none">Finish</button>
-<span class="card-count"></span>
+<span class="card-count"></span>&emsp;&emsp;&emsp;&emsp;&emsp;<span class="error" style="color: red"></span>
 
 <button id="toggle-deck" onclick="building = 'Deck'; updateShownCards();">Deck</button>
 <button id="toggle-base-monsters" onclick="building = 'Base'; updateShownCards();">Base Monsters</button>
@@ -122,9 +122,11 @@
         if (buildingBase.length === 5 && ($('#deck-name').val() !== '') && takenNames.indexOf($('#deck-name').val()) === -1) {
             $('#build-deck-disabled').css('display', 'none');
             $('#build-deck-finish').css('display', 'inline');
+            validationCheck();
         } else {
             $('#build-deck-disabled').css('display', 'inline');
             $('#build-deck-finish').css('display', 'none');
+            validationCheck();
 		}
     });
 
@@ -132,11 +134,13 @@
         if (building === "Deck") {
             buildingDeck.push($(this).attr('class').split(' ')[3]);
             updateShownCards();
+            validationCheck();
             $('.card-count').text(buildingDeck.length + ' cards');
         } else if (building === "Base") {
             if (buildingBase.length < 5) {
                 buildingBase.push($(this).attr('class').split(' ')[3]);
                 updateShownCards();
+                validationCheck();
                 if (buildingBase.length === 5 && ($('#deck-name').val() !== '') && takenNames.indexOf($('#deck-name').val()) === -1) {
                     $('#build-deck-disabled').css('display', 'none');
                     $('#build-deck-finish').css('display', 'inline');
@@ -153,6 +157,7 @@
             buildingDeck.splice($(this).attr('class').split(' ')[1].split('shown-card')[1], 1);
             $('.shown-card' + buildingDeck.length).empty();
             updateShownCards();
+            validationCheck();
             $('.card-count').text(buildingDeck.length + ' cards');
         } else if (building === "Base") {
             buildingBase.splice($(this).attr('class').split(' ')[1].split('shown-card')[1], 1);
@@ -160,6 +165,7 @@
             $('#build-deck-disabled').css('display', 'inline');
             $('#build-deck-finish').css('display', 'none');
             updateShownCards();
+            validationCheck();
         }
     });
 
@@ -196,6 +202,42 @@
     //         $('.deck-list').css('display', 'flex');
 	// 	}
     // }
+	
+	function validationCheck() {
+	    let validBaseMonsters = true;
+	    for (let i = 0; i < buildingBase.length; i++) {
+	        if (cardList[buildingBase[i]].evoStage !== 0) {
+	            validBaseMonsters = false;
+			}
+		}
+
+        var counts = {};
+
+        for (var i = 0; i < buildingDeck.length; i++) {
+            var card = buildingDeck[i];
+            counts[card] = counts[card] ? counts[card] + 1 : 1;
+        }
+        console.log(Object.values(counts));
+        console.log(Math.max(...Object.values(counts)));
+
+		if (buildingBase.length !== 5) {
+            $('.error').text('need 5 base monsters')
+		} else if (validBaseMonsters) {
+            $('.error').text('base monsters aren\'t valid');
+		} else if (buildingDeck.length < 40) {
+            $('.error').text('not enough cards');
+		} else if (buildingDeck.length > 60) {
+            $('.error').text('too many cards');
+        } else if (Math.max(...Object.values(counts)) > 4) {
+            $('.error').text('too many dupes');
+        } else if ($('#deck-name').val() === '') {
+            $('.error').text('deck name empty');
+        } else if (takenNames.indexOf($('#deck-name').val()) !== -1) {
+            $('.error').text('deck name already exists');
+		} else {
+            $('.error').empty();
+		}
+    }
 
 	function createDeck() {
 		var deckName = $('#deck-name').val();
