@@ -171,6 +171,44 @@ body {
     z-index: 101;
 }
 
+/* - - - - - - - - - - enemy side - - - - - - - - - - - */
+
+#enemy-monster-area.row {
+    top: 300px;
+}
+
+#enemy-monster-area>*>img {
+    width: 110px;
+    background-size: cover;
+    /*transform: rotate(180deg);*/
+}
+
+#enemy-monster1 {}
+#enemy-monster2 {}
+#enemy-monster3 {}
+#enemy-monster4 {}
+#enemy-monster5 {}
+
+#enemy-drop-areas>*>img {
+    width: 110px;
+    /*height: 350px;*/
+    background-size: cover;
+    transform: rotate(180deg);
+}
+#enemy-deck-area>img {
+    width: 110px;
+    background-size: cover;
+    /*transform: rotate(180deg);*/
+}
+.enemy-attack-area {
+    height: 50px;
+}
+.enemy-drop-extras1 {position: absolute;}
+.enemy-drop-extras2 {position: absolute;}
+.enemy-drop-extras3 {position: absolute;}
+
+
+
 
 /*#hp-area>*>img {*/
 /*    width: 110px;*/
