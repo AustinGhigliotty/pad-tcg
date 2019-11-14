@@ -22,6 +22,7 @@ for (var j = 0; j < localStorage.length; j++) {
     if (localStorage.key(j).indexOf('_baseMonstersRandom') > -1) {
         var baseMonsters = JSON.parse(atob(localStorage.getItem('_baseMonstersRandom')));
         baseMonsters = Object.values(baseMonsters)[0];
+        console.log(baseMonsters);
         localStorage.removeItem('_baseMonstersRandom');
     }
 }
@@ -46,6 +47,7 @@ for (var j = 0; j < localStorage.length; j++) {
     var puzzleCardFromDeck;
     var monstersHaveEvolved = [0,0,0,0,0];
     var combosMade = [0,0,0,0,0,0];
+    var evolvedMonster = '';
 
     var enemyBaseDeck = ["shynee", "bigShynee", "kingShynee", "ra", "evoRa", "UEvoLightRa", "amaterasu", "evoAmaterasu", "UEvoAmaterasu",
         "mermaid", "siren", "evoSiren", "valkyrie", "evoValkyrie", "UEvoValkyrie", "healerEnhance", "kingGoldDragon", "topalit", "sapphilit",
@@ -290,7 +292,7 @@ for (var j = 0; j < localStorage.length; j++) {
 
                     } else {
                         console.log("evolve");
-                        var evolvedMonster = hand.splice((parseInt(selectedCardClass.charAt(selectedCardClass.length - 1)) - 1), 1).toString();
+                        evolvedMonster = hand.splice((parseInt(selectedCardClass.charAt(selectedCardClass.length - 1)) - 1), 1).toString();
                         console.log(evolvedMonster);
                         baseMonsters[(parseInt(selectedCardClass2.charAt(selectedCardClass2.length - 1)) - 1)] = evolvedMonster;
                         monstersHaveEvolved[(parseInt(selectedCardClass2.charAt(selectedCardClass2.length - 1)) - 1)] = 1;
@@ -298,6 +300,7 @@ for (var j = 0; j < localStorage.length; j++) {
                         selectedCardClass = '';
                         selectedCard2 = '';
                         selectedCardClass2 = '';
+                        checkEvoSkill();
                         mainCancel();
                     }
                 } else {
@@ -360,11 +363,13 @@ for (var j = 0; j < localStorage.length; j++) {
         }
     });
 
+    var numCardsPlaced = 0;
+    var curDropArea;
+
     function checkCombos() {
         for (let h = 0; h <= 2; h++) {
             let numberOfDrops = [0, 0, 0, 0, 0, 0];
             let drops = [];
-            // for (let i = 0; i <= 2; i++) {
                 for (let j = 0; j < (eval('dropArea' + (h + 1))).length; j++) {
                     console.log(cardList[eval('dropArea' + (h + 1))[j]].drops);
                     for (let k = 0; k < (cardList[eval('dropArea' + (h + 1))[j]].drops).length; k++) {
@@ -372,7 +377,6 @@ for (var j = 0; j < localStorage.length; j++) {
                     }
                 }
                 console.log(drops);
-            // }
             for (let i = 0; i < drops.length; i++) {
                 if (drops[i] === 'Fire') {numberOfDrops[0]++}
                 if (drops[i] === 'Water') {numberOfDrops[1]++}
@@ -389,9 +393,28 @@ for (var j = 0; j < localStorage.length; j++) {
             }
             if (Math.max(...combosMade) > 0) {
                 console.log('h: ' + h);
-                h = 3;
-                console.log('h: ' + h);
+                curDropArea = h;
+                startCombos();
             }
+        }
+    }
+    
+    function startCombos() {
+        var numCardsNeeded = combosMade - numCardsPlaced;
+        if (numCardsNeeded > 0) {
+            setTimeout(function () {
+                if (curDropArea === 0) {
+                    dropArea1.push(curDeck[0]);
+                } else if (curDropArea === 1) {
+                    dropArea2.push(curDeck[0]);
+                } else if (curDropArea === 2) {
+                    dropArea3.push(curDeck[0]);
+                }
+            }, 900);
+            curDeck.shift();
+            dropRefresh();
+            numCardsPlaced++;
+            checkCombos();
         }
     }
 

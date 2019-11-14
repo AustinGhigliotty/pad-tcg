@@ -27,6 +27,7 @@ body {
 .shown-cards {
     margin: 0;
     max-width: 100%;
+    background-color: midnightblue;
 }
 .shown-cards>* {
     height: 200px;

@@ -83,12 +83,24 @@
         let RDeckLength = Math.ceil(Math.random()*21) + 39;
         let RDeck = [];
         let RBMons = [];
-        for (let i = 0; i < RDeckLength; i++) {
+        let validMonsters = [];
+
+        for (let i = 0; i < Object.keys(cardList).length; i++) {    // get monsters (no skills)
+            if (Object.values(cardList)[i].cardType === 'Monster') {
+                validMonsters.push(Object.keys(cardList)[i]);
+			}
+		}
+
+        console.log(validMonsters);
+
+        for (let i = 0; i < RDeckLength; i++) {                     // random deck
             RDeck.push(Object.keys(cardList)[Math.ceil(Math.random()*Object.keys(cardList).length)]);
 		}
-        for (let i = 0; i < 5; i++) {
-            RBMons.push(Object.keys(cardList)[Math.ceil(Math.random()*Object.keys(cardList).length)]);
+        for (let i = 0; i < 5; i++) {                               // random base monsters
+            RBMons.push(validMonsters[Math.ceil(Math.random()*validMonsters.length)]);
 		}
+
+        console.log(RBMons);
 
         let RDeckObj = {};
         let RBMonsObj = {};
